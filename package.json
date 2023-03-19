@@ -1,0 +1,27 @@
+{
+  "name": "nodejs-logger-zircgk",
+  "version": "1.0.0",
+  "description": "Develop the command line node.js application, which parses the input log file (see Input Example). The application should find all the log messages with the level error and print them into the output file (see Output Format).",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "ts-node src/index.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "http://berbob-gmbh-zmekib@git.codesubmit.io/berbob-gmbh/nodejs-logger-zircgk"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^18.15.3",
+    "@types/yargs": "^17.0.22",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.2"
+  },
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "yargs": "^17.7.1"
+  }
+}
