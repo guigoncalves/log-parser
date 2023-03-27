@@ -12,6 +12,6 @@ export interface LogSource {
 }
 
 export interface LogSink {
-  write(logEntry: LogEntry): Promise<void>;
+  write(logEntry: LogEntry): void;
   close(): void;
 }

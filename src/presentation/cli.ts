@@ -1,13 +1,13 @@
 import yargs from "yargs";
 import { LogParser } from "../domain/log-parser";
-import { FileLogSource } from "../connectors/stream-file-log-source";
-import { FileLogSink } from "../connectors/stream-file-log-sink";
+import { StreamLogSource } from "../connectors/stream-log-source";
+import { JsonLogSink } from "../connectors/json-log-sink";
 import { LogLevel } from "../domain/log-level";
 
 interface Arguments {
   input: string;
   output: string;
-  minLogLevel: string;
+  logLevel: string;
 }
 
 const argv = yargs
@@ -24,7 +24,7 @@ const argv = yargs
       alias: "o",
       description: "Path to the output file for error logs",
     },
-    minLogLevel: {
+    logLevel: {
       type: "string",
       default: "error",
       alias: "ll",
@@ -36,10 +36,10 @@ const argv = yargs
   .parseSync() as Arguments;
 
 // Instantiate the LogSource and LogSink implementations
-const logSource = new FileLogSource(argv.input);
-const logSink = new FileLogSink(argv.output);
+const logSource = new StreamLogSource(argv.input);
+const logSink = new JsonLogSink(argv.output);
 
-const logLevelEnum: LogLevel = argv.minLogLevel.toLowerCase() as LogLevel;
+const logLevelEnum: LogLevel = argv.logLevel.toLowerCase() as LogLevel;
 if (!Object.values(LogLevel).includes(logLevelEnum)) {
   console.error(
     `minLogLevel not permitted, allowed options ["${Object.values(
